@@ -319,9 +319,9 @@ def sell(current_coin, quantity, buy_price, highest_price):
 
 def mail_alert(mail_content, sleep_time):
     # The mail addresses and password
-    sender_address = 'sender_address'
-    sender_pass = 'sender_pass'
-    receiver_address = 'receiver_address'
+    sender_address = 'trading@azv.ro'
+    sender_pass = 'Parola1234#!'
+    receiver_address = 'trading@azv.ro'
 
     # Setup MIME
     message = MIMEMultipart()
@@ -333,7 +333,7 @@ def mail_alert(mail_content, sleep_time):
     message.attach(MIMEText(mail_content, 'plain'))
 
     # Create SMTP session for sending the mail
-    session = smtplib.SMTP('smtp.gmail.com', 587)  # use gmail with port
+    session = smtplib.SMTP('mail.azv.ro', 587)  # use gmail with port
     session.starttls()  # enable security
 
     # login with mail_id and password
