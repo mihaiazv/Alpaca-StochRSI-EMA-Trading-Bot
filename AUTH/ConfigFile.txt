@@ -1,6 +1,6 @@
 {
         "start_date": "10 days ago",
-        "end_date": "1 Jan, 2023",
+        "end_date": "1 Jan, 2025",
         "timeframe": "1Minute",
         "candle_lookback_period": 2,
 
