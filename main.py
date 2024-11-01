@@ -21,12 +21,41 @@ tickers = open('AUTH/Tickers.txt', 'r').read() # Tickers
 tickers = tickers.split()
 
 # Function to fetch data
-def get_data(ticker, timeframe= timeframe, start_date = int(start_date), exchanges = exchange):
+""" def get_data(ticker, timeframe= timeframe, start_date = int(start_date), exchanges = exchange):
     df = api.get_crypto_bars(ticker, timeframe, (dt.now() - timedelta(days = start_date)).strftime("%Y-%m-%d"), dt.now().strftime("%Y-%m-%d"), exchanges = exchange).df
     df.reset_index(inplace = True)
     df = df[['timestamp', 'open', 'high', 'low', 'close']]
     df.columns = ['Timestamp', 'Open', 'High', 'Low', 'Close']
+    return df  """
+
+#alternative
+def get_data(ticker, timeframe=timeframe, start_date=int(start_date), exchanges=exchange):
+    if exchange == 'CBSE':  # CBSE este un exchange de cripto
+      
+        df = api.get_crypto_bars(
+            ticker,
+            timeframe,
+            (dt.now() - timedelta(days=start_date)).strftime("%Y-%m-%d"),
+            dt.now().strftime("%Y-%m-%d"),
+            exchanges=exchange
+        ).df
+    else:
+        df = api.get_barset(
+            ticker,
+            timeframe,
+            start=(dt.now() - timedelta(days=start_date)).strftime("%Y-%m-%d"),
+            end=dt.now().strftime("%Y-%m-%d")
+        )[ticker].df
+
+    df.reset_index(inplace=True)
+    df = df[['timestamp', 'open', 'high', 'low', 'close']]
+    df.columns = ['Timestamp', 'Open', 'High', 'Low', 'Close']
     return df
+
+
+
+
+
 
 def check_params(tickers, run):
     tickers_check = tickers
