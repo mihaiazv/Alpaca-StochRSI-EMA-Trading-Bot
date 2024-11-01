@@ -30,16 +30,7 @@ tickers = tickers.split()
 
 #alternative
 def get_data(ticker, timeframe=timeframe, start_date=int(start_date), exchanges=exchange):
-    if exchange == 'CBSE':  # CBSE este un exchange de cripto
-      
-        df = api.get_crypto_bars(
-            ticker,
-            timeframe,
-            (dt.now() - timedelta(days=start_date)).strftime("%Y-%m-%d"),
-            dt.now().strftime("%Y-%m-%d"),
-            exchanges=exchange
-        ).df
-    else:
+
         df = api.get_barset(
             ticker,
             timeframe,
