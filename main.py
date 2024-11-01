@@ -33,7 +33,7 @@ def get_data(ticker, timeframe=timeframe, start_date=int(start_date), exchanges=
 
 
     # Preluăm date pentru acțiuni folosind `get_barset`
-    df = api.get_barset(
+    df = api.get_bars(
         ticker,
         timeframe,
         start=(dt.now() - timedelta(days=start_date)).strftime("%Y-%m-%d"),
